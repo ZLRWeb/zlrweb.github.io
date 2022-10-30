@@ -1,0 +1,79 @@
+
+# MDX 筆記
+
+> [MDX and React](https://docusaurus.io/docs/markdown-features/react)
+
+能在 markdown 文件中使用 React
+
+```mdx-code-block
+import BrowserWindow from '@site/src/components/BrowserWindow';
+```
+
+## 匯出 components
+
+```jsx
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
+
+<Highlight color="#25c2a0">Docusaurus green</Highlight>
+{``}and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+
+I can write **Markdown** alongside my _JSX_!
+```
+
+```mdx-code-block
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
+
+<BrowserWindow>
+
+<Highlight color="#25c2a0">Docusaurus green</Highlight>
+{``}and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+
+I can write **Markdown** alongside my _JSX_!
+
+</BrowserWindow>
+```
+
+:::caution
+注意在 jsx 中 `style` 的寫法
+```jsx
+/* Instead of this: */
+<span style="background-color: red">Foo</span>
+/* Use this: */
+<span style={{backgroundColor: 'red'}}>Foo</span>
+```
+:::
+
+## 載入 components
+能使用原本存在的 components ，也能使用自定義或第三方套件，就像使用 React 一樣。
+```jsx
+<!-- Docusaurus theme component -->
+import TOCInline from '@theme/TOCInline';
+<!-- External component -->
+import Button from '@mui/material/Button';
+<!-- Custom component -->
+import BrowserWindow from '@site/src/components/BrowserWindow';
+```
+:::tip
+`@site` 別名會指向網站的根目錄，建議使用別名而不是相對路徑載入檔案。
+:::
+
