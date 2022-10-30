@@ -1,0 +1,162 @@
+
+# 加入 Giscus 留言功能
+
+依照官方流程建立好giscus用的repo及取得所需資訊 [Giscus](https://giscus.app/zh-TW)
+
+## 安裝 giscus 套件
+
+### npm
+
+```bash
+npm i @giscus/react
+```
+
+### yarn
+
+```bash
+yarn add @giscus/react
+```
+
+## 複製文章模板
+
+參考官方提供的 [plugin-content](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs) 文件，這邊以 `docs` 為例。
+
+找到以下檔案並複製一份到 `src/theme` 中，重新命名為 `doc.tsx`。
+
+```jsx title="/node_modules/@docusaurus/theme-classic/src/theme/DocItem/index.tsx"
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import React from 'react';
+import {HtmlClassNameProvider} from '@docusaurus/theme-common';
+import {DocProvider} from '@docusaurus/theme-common/internal';
+import DocItemMetadata from '@theme/DocItem/Metadata';
+import DocItemLayout from '@theme/DocItem/Layout';
+import type {Props} from '@theme/DocItem';
+
+export default function DocItem(props: Props): JSX.Element {
+  const docHtmlClassName = `docs-doc-id-${props.content.metadata.unversionedId}`;
+  const MDXComponent = props.content;
+  return (
+    <DocProvider content={props.content}>
+      <HtmlClassNameProvider className={docHtmlClassName}>
+        <DocItemMetadata />
+        <DocItemLayout>
+          <MDXComponent />
+        </DocItemLayout>
+      </HtmlClassNameProvider>
+    </DocProvider>
+  );
+}
+
+```
+
+## 加入 Giscus Component
+
+將 `Giscus` 放在 `MDXcomponent` 下方，表示留言板要產生在文章的最下方，`Giscus`中的參數依照在官網上所取得的資訊填入。
+
+```jsx title="/src/theme/doc.tsx"
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import React from "react";
+import { HtmlClassNameProvider } from "@docusaurus/theme-common";
+import { DocProvider } from "@docusaurus/theme-common/internal";
+import DocItemMetadata from "@theme/DocItem/Metadata";
+import DocItemLayout from "@theme/DocItem/Layout";
+import type { Props } from "@theme/DocItem";
+// add-line
+import Giscus from "@giscus/react";
+
+export default function DocItem(props: Props): JSX.Element {
+  const docHtmlClassName = `docs-doc-id-${props.content.metadata.unversionedId}`;
+  const MDXComponent = props.content;
+  return (
+    <DocProvider content={props.content}>
+      <HtmlClassNameProvider className={docHtmlClassName}>
+        <DocItemMetadata />
+        <DocItemLayout>
+          <div>
+            <MDXComponent />
+            // add-start
+            <Giscus
+              id="comments"
+              repo=""
+              repoId=""
+              category="Announcements"
+              categoryId=""
+              mapping="pathname"
+              reactionsEnabled="1"
+              inputPosition="top"
+              theme="dark_dimmed"
+              lang="zh-TW"
+              loading="lazy"
+            />
+            // add-end
+          </div>
+        </DocItemLayout>
+      </HtmlClassNameProvider>
+    </DocProvider>
+  );
+}
+
+```
+
+## 配置 config 使用新建的模板
+
+參考以下 `docItemComponent` 的配置，使用 `@theme/doc` 表示使用 `src/theme/doc.tsx` 這個模板檔。
+
+```js title="/docusaurus.config.js"
+
+presets: [
+    [
+      "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
+        docs: {
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/",
+          // add-line
+          docItemComponent: "@theme/doc",
+        },
+        blog: {
+          showReadingTime: true,
+        },
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+      }),
+    ],
+  ],
+
+```
+
+## 修改 Giscus 留言板樣式
+
+在 `custom.css` 中加入以下程式調整留言板樣式。
+
+```css title="/src/css/custom.css"
+giscus-widget {
+  display: flex;
+  margin: auto;
+  width: auto;
+}
+```
+
+## 完成後啟動
+
+```bash
+npm start
+```
+
+## 參考資料
+- [安裝 Github 留言板 Giscus](https://weij0.github.io/Web/docs/Docusaurus/Install_Giscus)
