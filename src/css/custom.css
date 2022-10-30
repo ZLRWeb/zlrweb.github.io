@@ -28,3 +28,53 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.5rem;
+}
+
+.code-block-add-line {
+  background-color: #26ff0020;
+  border-left: 3px solid #00ff1580;
+  display: block;
+  margin: 0 calc(var(--ifm-pre-padding)*-1);
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.code-block-add-line::before {
+  /* content: '+'; */
+  position: relative;
+  top: 0;
+  left: -12px;
+  color: rgb(0, 36, 128);
+}
+
+.code-block-remove-line {
+  background-color: #ff000020;
+  border-left: 3px solid #ff000080;
+  display: block;
+  margin: 0 calc(var(--ifm-pre-padding)*-1);
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.code-block-remove-line::before {
+  /* content: '-'; */
+  position: relative;
+  top: 0px;
+  left: -12px;
+  color: purple;
+}
+
+.code-block-error-line {
+  background-color: #ff000020;
+  border-left: 3px solid #ff000080;
+  display: block;
+  margin: 0 calc(var(--ifm-pre-padding)*-1);
+  padding: 0 var(--ifm-pre-padding);
+}
+
+giscus-widget {
+  display: flex;
+  margin: auto;
+  width: auto;
+}

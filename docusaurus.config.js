@@ -35,17 +35,10 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          docItemComponent: "@theme/doc",
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -101,8 +94,8 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "Docusauras",
+                to: "/Docusauras/common-settings",
               },
             ],
           },
@@ -134,6 +127,29 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        magicComments: [
+          // Remember to extend the default highlight class name as well!
+          {
+            className: "theme-code-block-highlighted-line",
+            line: "highlight-next-line",
+            block: { start: "highlight-start", end: "highlight-end" },
+          },
+          {
+            className: "code-block-error-line",
+            line: "error-line",
+            block: { start: "error-start", end: "error-end" },
+          },
+          {
+            className: "code-block-add-line",
+            line: "add-line",
+            block: { start: "add-start", end: "add-end" },
+          },
+          {
+            className: "code-block-remove-line",
+            line: "remove-line",
+            block: { start: "remove-start", end: "remove-end" },
+          },
+        ],
       },
     }),
   themes: [require.resolve("@docusaurus/theme-live-codeblock")],
