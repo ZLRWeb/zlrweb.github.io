@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Zero's Notes",
   tagline: "Dinosaurs are cool",
-  url: "https://notes.zerolr.net",
+  url: "https://zlrweb.github.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -16,8 +16,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "zlrweb", // Usually your GitHub org/user name.
+  projectName: "zlrweb.github.io", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -95,7 +95,7 @@ const config = {
             items: [
               {
                 label: "Docusauras",
-                to: "/Docusauras/common-settings",
+                href: "https://docusaurus.io/",
               },
             ],
           },
