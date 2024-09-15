@@ -1,0 +1,244 @@
+# Programming Language
+javascript:
+  label: JavaScript
+  permalink: /javascript
+  description: JavaScript tag description
+
+typescript:
+  label: TypeScript
+  permalink: /typescript
+  description: TypeScript tag description
+
+java:
+  label: Java
+  permalink: /java
+  description: Java tag description
+
+kotlin:
+  label: Kotlin
+  permalink: /kotlin
+  description: Kotlin tag description
+
+go:
+  label: Go
+  permalink: /go
+  description: Go tag description
+
+# Rpc
+grpc:
+  label: gRPC
+  permalink: /grpc
+  description: gRPC tag description
+
+# Testing
+jest:
+  label: Jest
+  permalink: /jest
+  description: Jest tag description
+
+cucumber:
+  label: Cucumber
+  permalink: /cucumber
+  description: Cucumber tag description
+
+# Runtime
+nodejs:
+  label: Node.js
+  permalink: /nodejs
+  description: Node.js tag description
+
+deno:
+  label: Deno
+  permalink: /deno
+  description: Deno tag description
+
+# Package Manager
+npm:
+  label: npm
+  permalink: /npm
+  description: npm tag description
+
+maven:
+  label: Maven
+  permalink: /maven
+  description: Maven tag description
+
+# Front End
+react:
+  label: React
+  permalink: /react
+  description: React tag description
+
+nextjs:
+  label: Next.js
+  permalink: /nextjs
+  description: Next.js tag description
+
+# Back End
+nestjs:
+  label: NestJS
+  permalink: /nestjs
+
+# MonoRepo
+nx:
+  label: Nx
+  permalink: /nx
+  description: Nx tag description
+
+# Database
+sql:
+  label: SQL
+  permalink: /sql
+  description: SQL tag description
+
+postgres:
+  label: PostgreSQL
+  permalink: /postgres
+  description: PostgreSQL tag description
+
+mysql:
+  label: MySQL
+  permalink: /mysql
+  description: MySQL tag description
+
+mongodb:
+  label: MongoDB
+  permalink: /mongodb
+  description: MongoDB tag description
+
+# Messaging
+kafka:
+  label: Kafka
+  permalink: /kafka
+  description: Kafka tag description
+
+rabbitmq:
+  label: RabbitMQ
+  permalink: /rabbitmq
+  description: RabbitMQ tag description
+
+# Cache
+redis:
+  label: Redis
+  permalink: /redis
+  description: Redis tag description
+
+# DevOps
+docker:
+  label: Docker
+  permalink: /docker
+  description: Docker tag description
+
+k8s:
+  label: Kubernetes
+  permalink: /kubernetes
+  description: Kubernetes tag description
+
+# CI/CD
+github-actions:
+  label: GitHub Actions
+  permalink: /github-actions
+  description: GitHub Actions tag description
+
+jenkins:
+  label: Jenkins
+  permalink: /jenkins
+  description: Jenkins tag description
+
+argocd:
+  label: ArgoCD
+  permalink: /argocd
+  description: ArgoCD tag description
+
+# Deployment
+helm:
+  label: Helm
+  permalink: /helm
+  description: Helm tag description
+
+kustomize:
+  label: Kustomize
+  permalink: /kustomize
+  description: Kustomize tag description
+
+# App Definition
+dapr:
+  label: Dapr
+  permalink: /dapr
+  description: Dapr tag description
+
+# Service Mesh
+istio:
+  label: Istio
+  permalink: /istio
+  description: Istio tag description
+
+# Observability
+prometheus:
+  label: Prometheus
+  permalink: /prometheus
+  description: Prometheus tag description
+
+grafana:
+  label: Grafana
+  permalink: /grafana
+  description: Grafana tag description
+
+loki:
+  label: Loki
+  permalink: /loki
+  description: Loki tag description
+
+tempo:
+  label: Tempo
+  permalink: /tempo
+  description: Tempo tag description
+
+jaeger:
+  label: Jaeger
+  permalink: /jaeger
+  description: Jaeger tag description
+
+open-telemetry:
+  label: OpenTelemetry
+  permalink: /open-telemetry
+  description: OpenTelemetry tag description
+
+fluentd:
+  label: Fluentd
+  permalink: /fluentd
+  description: Fluentd tag description
+
+# Container Registry
+harbor:
+  label: Harbor
+  permalink: /harbor
+  description: Harbor tag description
+
+# Security
+oauth:
+  label: OAuth
+  permalink: /oauth
+  description: OAuth tag description
+
+sonarqube:
+  label: SonarQube
+  permalink: /sonarqube
+  description: SonarQube tag description
+
+# Cloud
+aws:
+  label: AWS
+  permalink: /aws
+  description: AWS tag description
+
+# IaC
+terraform:
+  label: Terraform
+  permalink: /terraform
+  description: Terraform tag description
+
+pulumi:
+  label: Pulumi
+  permalink: /pulumi
+  description: Pulumi tag description
