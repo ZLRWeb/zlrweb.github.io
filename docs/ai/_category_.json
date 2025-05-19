@@ -1,4 +1,7 @@
 {
   "label": "AI-Generated Content",
-  "position": 3
+  "position": 3,
+  "items": [
+    "copilot-workspace-getting-started"
+  ]
 }
