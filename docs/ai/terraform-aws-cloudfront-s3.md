@@ -1,3 +1,15 @@
+---
+title: Terraform AWS CloudFront + S3 靜態網站與 Route53 網域
+description: 這篇文章詳細說明如何使用 Terraform 配置來設置 AWS CloudFront 分發與 S3 存儲桶進行靜態網站託管，並使用 Route53 網域，提供只讀訪問、最小 IAM 權限、WAF 限制以及每月 $10 的預算限制。
+tags:
+  - AWS
+  - IaC
+  - terraform
+  - s3
+  - cloudfront
+  - route53
+---
+
 # Terraform AWS CloudFront + S3 靜態網站與 Route53 網域
 
 這篇文章詳細說明如何使用 Terraform 配置來設置 AWS CloudFront 分發與 S3 存儲桶進行靜態網站託管，並使用 Route53 網域，提供只讀訪問、最小 IAM 權限、WAF 限制以及每月 $10 的預算限制。
