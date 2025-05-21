@@ -73,3 +73,9 @@ Linkerd2 和 Istio 是兩個主流的 **Service Mesh（服務網格）** 解決�
 | 大型企業或需要精細控制的環境 | **Istio**，功能完整、彈性大 |
 | 需要最低延遲與資源效率 | **Linkerd2**（使用 Rust Proxy 更省資源） |
 | 已有 Envoy 或 GCP 生態整合 | **Istio** 較容易整合 |
+
+## 參考資料
+
+- [Linkerd2 Documentation](https://linkerd.io/2.11/)
+- [Istio Documentation](https://istio.io/latest/)
+- [Kubernetes Service Documentation](https://kubernetes.io/docs/concepts/services-networking/service/)
