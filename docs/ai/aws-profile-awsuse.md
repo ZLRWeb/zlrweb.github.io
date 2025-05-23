@@ -31,10 +31,10 @@ tags:
 
 ```sh
 awsuse() {
-  if [ "$1" == "list" ]; then
+  if [ "$1" = "list" ]; then
     echo "Available AWS profiles:"
     aws configure list-profiles
-  elif [ "$1" == "whoami" ]; then
+  elif [ "$1" = "whoami" ]; then
     echo "Current profile: ${AWS_PROFILE:-default}"
     aws sts get-caller-identity
   elif [ -n "$1" ]; then
