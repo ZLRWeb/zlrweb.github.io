@@ -200,3 +200,39 @@ API 設計沒有一體適用的完美方案。RESTful 風格因其簡單性、�
 *   當系統架構以事件驅動為核心，需要清晰定義和管理異步訊息流時，**AsyncAPI** 則彌補了傳統同步 API 描述的不足。
 
 最終，選擇哪種 API 設計風格取決於具體的業務需求、技術棧、團隊熟悉度、效能目標以及客戶端的類型和能力。理解各種風格的優勢與局限，並結合實際情況做出明智的決策，是構建成功軟體系統的關鍵一步。在某些複雜的系統中，甚至可能同時採用多種 API 風格來滿足不同組件的需求。
+
+## 參考來源
+Fielding, R. T. (2000). "Architectural Styles and the Design of Network-based Software Architectures" (REST 論文)
+https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm
+
+GitHub REST API Documentation
+https://docs.github.com/en/rest
+
+Stripe API Reference
+https://stripe.com/docs/api
+
+Google Cloud API Design Guide (AIP-134, AIP-161)
+https://cloud.google.com/apis/design
+https://google.aip.dev/134
+https://google.aip.dev/161
+
+GraphQL 官方檔案
+https://graphql.org/learn/
+
+gRPC 官方檔案
+https://grpc.io/docs/
+
+Protocol Buffers (protobuf)
+https://developers.google.com/protocol-buffers
+
+AsyncAPI 官方網站
+https://www.asyncapi.com/docs
+
+OpenAPI Specification
+https://swagger.io/specification/
+
+JSON Web Tokens (JWT) 官方網站
+https://jwt.io/introduction
+
+OAuth 2.0 標準
+https://oauth.net/2/
