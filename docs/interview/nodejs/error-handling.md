@@ -4,7 +4,7 @@
 
 | 錯誤類型                  | 範例                  | 是否可捕捉                |
 |---------------------------|-----------------------|---------------------------|
-| 語法錯誤 (SyntaxError)    | JSON.parse('{')       | 否，執行前報錯            |
+| 語法錯誤 (SyntaxError)    | JSON.parse('[')       | 否，執行前報錯            |
 | 執行期錯誤 (RuntimeError) | foo.bar()             | ✅ 可使用 try-catch        |
 | 非同步錯誤 (Async error)  | fs.readFile() callback| ✅ 需在 callback 或 catch 處理 |
 | 未捕捉例外                | 無 try-catch 包裹     | ❌ 會導致 process crash    |
