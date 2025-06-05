@@ -8,10 +8,15 @@ https://youtu.be/fvygzszm4ac
 ## 摘要
 
 文本來源對設計任務調度系統進行了深入討論。
+
 文章強調了在系統設計中進行**權衡取捨**的重要性，並以任務調度系統為例，探討了**系統類型**（內部/外部）、**調度類型**以及**任務類型**等方面的初步決策。
+
 隨後，作者闡述了設計**最低可行產品 (MVP)** 的必要性，並確定了使用者可以**提交任務**和**查看執行結果**等核心功能需求。
+
 文章還討論了**非功能性需求**，如低延遲、可擴展性和可靠性，並進一步探討了**數據模型**設計和任務狀態轉換。
+
 最後，文章提出了不同的系統架構方案，包括使用**數據庫**或**消息隊列**作為數據存儲和任務分發機制，並分析了**工作節點與任務協調者之間的通信模式**。
+
 討論也觸及了**資源管理與優化**以及如何實現**定時任務**和**任務依賴**等進階功能。
 
 ## 內容分析
@@ -26,25 +31,25 @@ https://youtu.be/fvygzszm4ac
 
 設計過程強調先實現一個**最小可行產品 (Minimum Viable Product, MVP)**，滿足最基本的功能，並限定初步的範圍。設想一個最基礎的調度器來進行設計。
 
-**功能需求 (Functional Requirements)** 包括：
+### **功能需求 (Functional Requirements)** 包括：
 
 - 用戶可以**提交 (submit)** 任務.
 - 系統在後台執行任務 (System background execution).
 - 用戶可以**查看任務的執行結果 (task result)**.
 
-**進階功能 (Advanced Future)** 可能包括：
+### **進階功能 (Advanced Future)** 可能包括：
 
 - 調度未來的任務 (schedule some task in future).
 - 設定定時任務 (cron service)，如每隔 30 分鐘執行或每天特定時間執行.
 - 支持有任務依賴關係的 DAG (Directed Acyclic Graph) 任務，例如任務 A 跑完後才能跑任務 B 和 C.
 
-**非功能需求 (Non-functional Requirements)** 考慮了：
+### **非功能需求 (Non-functional Requirements)** 考慮了：
 
 - **延遲 (Latency)**：提交的任務應在 1 秒內執行 (task execution within 1 second)。查看結果的儀表板 (dashboard) 可以在 60 秒內更新 (dashboard within 60 seconds)。
 - **可擴展性 (Scalability)**：系統應能擴展以處理大量任務.
 - **可靠性 (Reliability)**：系統需要考慮到可靠性問題。如果系統崩潰後重啟，需要重新撿起正在執行的任務。
 
-**任務數據模型 (Job Data Model)** 的設計包括兩部分：
+### **任務數據模型 (Job Data Model)** 的設計包括兩部分：
 
 1.  **可執行文件 (executable file)** 或配置 (config)，它們可以被抽象成一個可執行的二進制文件 (binary file)。這部分可以存儲在一個獨立的倉庫 (repository) 或對象存儲服務中，如 AWS S3.
 2.  **元數據 (Meta Data)**，包含任務相關的資訊。例如：
@@ -56,7 +61,7 @@ https://youtu.be/fvygzszm4ac
     - 執行結果 (Execution result)
     - 重試次數 (Number of retries)
 
-**任務狀態轉換 (State Transition)** 是一個核心問題。設計了一個簡單的狀態轉換機：
+### **任務狀態轉換 (State Transition)** 是一個核心問題。設計了一個簡單的狀態轉換機：
 
 - **Ready (0 狀態)**：初始狀態.
 - **Waiting (排隊等待)**：任務提交後進入此狀態.
@@ -66,7 +71,7 @@ https://youtu.be/fvygzszm4ac
   - 如果重試次數 (number of retries) 小於閾值 (例如 3 次)，回到 Waiting 狀態等待下一次執行。
   - 如果重試次數大於等於閾值，進入 **Final Fail** 狀態。
 
-**高層級架構圖 (High-Level Diagram)** 包括以下組件：
+### **高層級架構圖 (High-Level Diagram)** 包括以下組件：
 
 - **Repository**：存儲代碼、配置或可執行二進制文件，例如 AWS S3。
 - **Client**：客戶端，可以提交任務請求.
@@ -76,7 +81,7 @@ https://youtu.be/fvygzszm4ac
 - **Worker**：工作節點，從 Queue 獲取任務並執行.
 - **Dashboard**：儀表板，用於查看任務執行狀態.
 
-**數據存儲 (Data Store)** 的選擇和討論：
+### **數據存儲 (Data Store)** 的選擇和討論：
 
 - 通過對內部系統的用戶量 (10K) 和每個用戶每天提交的作業數 (100) 進行估算，計算出每日總作業數為 10^6。假設每日 10 萬秒，提交的 QPS 大約是 10，峰值 QPS 估計約為 50。Dashboard 的讀 QPS 估計約為 100，峰值 QPS 約為 500。這些 QPS 值相對較低。
 - 在 Dashboard 和 Data Store 之間可以考慮加緩存 (cache) 來滿足 60 秒延遲的需求。緩存的 TTL (Time To Live) 可以設為 60 秒。但由於 QPS 不高，初步設計可能不需要緩存。
@@ -89,7 +94,7 @@ https://youtu.be/fvygzszm4ac
   - 對於這個任務調度系統，這三個信號都不強烈支持必須使用 SQL。沒有外鍵約束、聯表查詢的需求，且由於延遲要求較寬，最終一致性可能也可以接受。因此，NoSQL 也是一個可選項。
 - 如果沒有強烈的信號指向特定類型的數據庫，可以遵循 **"延遲決策 (Defer Decision)" 或 "Defer Commitment" 原則**。這原則源自整潔架構 (Clean Architecture)，旨在保留更多選項，推遲細節決策，以增加未來變更的靈活性。
 
-**消息隊列 (MQ)** 的進一步討論：
+### **消息隊列 (MQ)** 的進一步討論：
 
 - 引入 MQ 是為了**解耦 (decouple)** 上下游的執行和提交過程。
 - 考慮 MQ 的實現類型：**內存隊列 (in-memory queue)** 或 **持久化隊列 (persistent queue)**。
@@ -101,7 +106,7 @@ https://youtu.be/fvygzszm4ac
   - 引入事務 (transaction) 或分佈式鎖 (distributed lock) 來保證雙寫一致會增加額外複雜性和風險。例如，MQ 故障可能導致 Data Store 也無法寫入，這與解耦的目的相悖。
 - 另一種思路是讓 Data Store 作為數據的單一事實來源 (source of truth)，MQ 中的數據依賴於 Data Store。但這又引出問題：為什麼需要兩套數據系統？
 
-**數據系統的替代方案 (Alternatives for Data Systems)**：
+### **數據系統的替代方案 (Alternatives for Data Systems)**：
 
 - **能否使用 MQ 作為 Data Storage (比如 Configuration Database)**？
   - 技術上可行，且在低 QPS 場景下能夠承受。支持分區 (partitioning)。
@@ -114,7 +119,7 @@ https://youtu.be/fvygzszm4ac
   - 具體實現：可以在 Data Store 中存儲任務，然後通過定時查詢 (例如 `SELECT * FROM job_table WHERE status = 'Waiting' AND ... ORDER BY ... LIMIT N`) 來實現隊列語義。
 - 最終建議：可以單獨加入一個 **Informer (發布者)**。Informer 定時查詢 Data Store 中的等待執行任務，然後將這些任務發布出去。這將 Data Store 和 Worker 隔離開。
 
-**Worker 通信模型 (Worker Communication Models)**：當 Informer 獲取到等待執行的任務後，如何將其交給 Worker 執行？有三種方案：
+### **Worker 通信模型 (Worker Communication Models)**：當 Informer 獲取到等待執行的任務後，如何將其交給 Worker 執行？有三種方案：
 
 1.  **Pull 模型 (Worker 主動拉取)**：Worker 發起 RPC 請求，從 Informer 或 Queue 拉取任務。
     - 優點：Informer 管理負擔輕。Fire and forget 模式。
@@ -127,7 +132,7 @@ https://youtu.be/fvygzszm4ac
     - 優點：融合前兩種優勢。更安全 (Worker 不發起 RPC)。Informer 不需直接維護 Task 和 Worker 的映射。Sidecar 管理元數據並利用心跳匯報狀態。如果 Data Store 在一段時間 (例如 180 秒，三次心跳週期) 內未收到心跳，可將任務狀態從 Running 轉為 Failed。Failed 任務根據重試次數決定是 Retry 還是 Final Fail。
     - 缺點：增加了每個 Worker 的開銷 (Sidecar)。
 
-**資源管理與優化 (Resource Management/Optimization)**：如何處理 Worker 資源不足的問題？
+### **資源管理與優化 (Resource Management/Optimization)**：如何處理 Worker 資源不足的問題？
 
 - **增加機器/資源**：最簡單，但不總可行 (例如成本限制)。
 - **增加等待時間**：使用指數退避 (exponential backoff) 延遲重試，適用於資源暫時緊張的情況。
@@ -137,7 +142,7 @@ https://youtu.be/fvygzszm4ac
   - **資源回收 (Recycle Resource)**：系統自動回收用戶過度申請的資源。用戶常申請比實際需要更多的資源以應對峰值。通過回收過剩資源可以提高整體性能。提到 Google 的 Autopilot 和騰訊的 Gocuring 項目作為例子。
   - **區分任務類型**：對於長時間運行的生產服務 (long-running production service)，需要優先保證其高可用性。對於執行完就關閉的短暫任務 (terminating task)，如定時備份數據庫，即使延遲十幾分鐘執行也沒問題。這類任務屬於可搶佔的 (preemptible) 任務。資源緊張時，可以考慮延後或壓縮這類任務的資源。需要注意有些資源不可壓縮，如內存 (可能導致 OOM)，而 CPU 減少只會讓執行變慢。
 
-**在基礎調度器上實現進階功能**：
+### **在基礎調度器上實現進階功能**：
 
 - **定時任務 (Cron Service)**：可以在基礎調度器之上封裝一個 Client Library。上層可以接入一個 Cron Service 微服務。Cron Service 維護一個優先級隊列 (priority queue)，按任務的下次運行時間排序。時間一到，將任務彈出並發送給 Task Scheduler Client 提交。同時計算任務的下一次執行時間並重新插入隊列。
 - **DAG 任務 (DAG Service)**：上層添加一個 DAG Service 微服務。將 DAG 任務丟給此服務。可以在內存中對任務進行拓撲排序 (topological sort)。按照排序順序，將任務提交給 Task Client。等待 Task Client 返回 Success 信號後，再按順序提交下一個任務.
