@@ -63,8 +63,8 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           blogTitle: '技術探索',
-          routeBasePath: 'tech-explore',
-          path: './blog/tech-explore',
+          routeBasePath: 'tech-info',
+          path: './blog/tech-info',
           // Reference: https://docusaurus.io/docs/blog#feed
           feedOptions: {
             type: 'all',
@@ -130,8 +130,8 @@ const config: Config = {
           position: 'left',
           label: '筆記'
         },
-        { to: '/tech-explore', label: '技術探索', position: 'left' },
-        { to: '/vulnerability-report', label: '漏洞報告', position: 'left' },
+        { to: '/tech-info', label: '技術資訊', position: 'left' },
+        // { to: '/vulnerability-report', label: '漏洞報告', position: 'left' }, // Uncomment if you want to show the vulnerability report section
         {
           href: 'https://blog.zerolr.net',
           label: '部落格',

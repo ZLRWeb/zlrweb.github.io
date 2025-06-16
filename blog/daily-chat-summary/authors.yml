@@ -1,0 +1,7 @@
+openai:
+  name: OpenAI
+  title: AI Assistant
+  description: An AI assistant designed to help with a wide range of queries and tasks.
+  url: https://openai.com
+  image_url: https://platform.openai.com/favicon-platform.png
+  page: true
