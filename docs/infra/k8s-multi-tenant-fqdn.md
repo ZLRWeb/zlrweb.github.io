@@ -15,7 +15,7 @@
 當一個 Pod 需要存取另一個 Namespace 中的 Service 時，可以使用其 FQDN。
 
 其標準格式為：
-<service-name>.<namespace-name>.svc.cluster.local
+`<service-name>.<namespace-name>.svc.cluster.local`
 
 例如，一個位於 tenant-a Namespace 的應用，若要存取 tenant-b Namespace 中名為 user-service 的服務，其溝通端點即為 user-service.tenant-b.svc.cluster.local。這種方式簡單明瞭，但隨之而來的挑戰是：如何精細地控制哪些租戶之間可以互相溝通？
 
