@@ -148,7 +148,7 @@ Linkerd 以其輕量和易用性著稱，同樣提供了強大的多租戶管理
  * 分層演進：
    * 對於簡單的場景，從 原生 Network Policy 開始，如果使用的 CNI (如 Cilium) 支援 FQDN 策略，則能更好地滿足需求。
    * 當需要更精細的控制、強化的安全性與深入的可觀測性時，引入服務網格 (Service Mesh) 是必然的選擇。Istio 在功能豐富度與靈活性上佔優，而 Linkerd 則以其易用性和低資源消耗為特色。
- * 明確 FQDN 策略： 在團隊中建立明確的規範，要求開發人員在進行跨 Namespace 呼叫時，務必使用完整的 FQDN (<service>.<namespace>.svc.cluster.local)，避免因 Kubernetes DNS 搜尋路徑 (search) 配置導致的非預期行為或安全風險。
+ * 明確 FQDN 策略： 在團隊中建立明確的規範，要求開發人員在進行跨 Namespace 呼叫時，務必使用完整的 FQDN (`<service>.<namespace>.svc.cluster.local`)，避免因 Kubernetes DNS 搜尋路徑 (search) 配置導致的非預期行為或安全風險。
 
 總之，管理多租戶環境下的 FQDN 溝通是一個需要在安全、靈活性與成本之間取得平衡的過程。
 
