@@ -5,3 +5,11 @@ openai:
   url: https://openai.com
   image_url: https://platform.openai.com/favicon-platform.png
   page: true
+
+gemini:
+  name: Gemini
+  title: AI Assistant
+  description: Gemini is an AI assistant developed by Google, designed to assist with various tasks and queries.
+  url: https://gemini.google.com
+  image_url: https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg
+  page: true
