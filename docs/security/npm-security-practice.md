@@ -284,7 +284,7 @@ GitLab 的持續漏洞掃描（Continuous Vulnerability Scanning）服務進一�
 | 安全安裝 | $ npm audit | 審核專案依賴項中的已知漏洞  | 內建且易於使用，可自動修復部分漏洞  |
 | 持續監控 | npmgraph 或 dependency-tree | 將專案的依賴關係樹可視化  | 幫助開發者理解複雜的傳遞性依賴關係，識別潛在風險  |
 
-###8.3. 必備線上資源
+### 8.3. 必備線上資源
 
  * OWASP Node.js Security Cheat Sheet ：提供涵蓋應用程式、伺服器和平台安全的全方位指南。
  * --ignore-scripts 最佳實踐 ：詳細解釋了如何權衡安全與功能，並推薦了預設禁用腳本的策略。
